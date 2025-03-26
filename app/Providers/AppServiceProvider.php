@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Configs\NYTimes\BooksApiConfig;
-use App\Repositories\NYTimes\BestSellerRepository;
-use App\Repositories\NYTimes\BestSellerRepositoryInterface;
+use App\Configs\BooksApiConfig;
+use App\Repositories\v1\BestSellerRepository;
+use App\Repositories\v1\BestSellerRepositoryInterface;
 use App\Services\v1\BestSellerService;
 use App\Services\v1\BestSellerServiceInterface;
 use Illuminate\Support\ServiceProvider;

@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\v1;
 
+use App\DTO\v1\ListDto;
 use App\Http\Requests\v1\BestSellerHistoryListRequest;
+use App\Http\Resources\v1\BestSellersHistoryResource;
+use App\Http\Responses\v1\ApiResponse;
 use App\Services\v1\BestSellerServiceInterface;
-use Illuminate\Http\JsonResponse;
 use Throwable;
 
 class BestSellerController extends BaseController
@@ -16,8 +18,10 @@ class BestSellerController extends BaseController
     /**
      * @throws Throwable
      */
-    public function __invoke(BestSellerHistoryListRequest $request): JsonResponse
+    public function __invoke(BestSellerHistoryListRequest $request): ApiResponse
     {
-        return $this->json($this->service->listHistory($request->validated()));
+        $data = $this->service->listHistory(ListDto::fromRequest($request));
+
+        return new ApiResponse(BestSellersHistoryResource::make($data));
     }
 }
