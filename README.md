@@ -77,7 +77,7 @@ Application provides a shortcuts for a built-in commands:
 # Additional information.
 
 1. Filters validation is performed by `\App\Http\Requests\v1\BestSellerHistoryListRequest` class.
-2. Communication with NYT Best Sellers API is handled by `\App\NYTimes\Repositories\BestSellerRepository` class.
+2. Communication with NYT Best Sellers API is handled by `\App\Services\v1\BestSellerService` class.
 3. Exceptions handling and their rendering to API response are performed by built-in Laravel's 
    `\App\Exceptions\Handler` class.
 4. API route is defined in `routes/api/v1.php` file.
