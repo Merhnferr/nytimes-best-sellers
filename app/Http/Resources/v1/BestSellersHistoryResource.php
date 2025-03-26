@@ -16,6 +16,7 @@ class BestSellersHistoryResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'status' => $this->getStatus(),
             'copyright' => $this->getCopyright(),
             'resultsNumber' => $this->getResultsNumber(),
             'result' => BookResource::collection($this->getResult()),

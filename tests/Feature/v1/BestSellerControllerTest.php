@@ -34,18 +34,15 @@ class BestSellerControllerTest extends TestCase
         $this->assertTrue(Cache::has(md5(config('cache.prefix'))));
 
         $response->assertStatus(200);
-        $response->assertExactJson([
-            'success' => true,
-            'data' => [
-                'bestSellers' => [
-                    [
-                        'title' => 'Lorem Ipsum',
-                    ],
-                ],
-                'meta' => [
-                    'total' => 1,
-                ],
-            ],
+        $response->assertJsonFragment([
+            'title' => '#GIRLBOSS',
+            'description' => 'An online fashion retailer traces her path to success.',
+            'contributor' => 'by Sophia Amoruso',
+            'author' => 'Sophia Amoruso',
+            'contributorNote' => '',
+            'price' => 0,
+            'ageGroup' => '',
+            'publisher' => 'Portfolio/Penguin/Putnam',
         ]);
     }
 
@@ -59,8 +56,7 @@ class BestSellerControllerTest extends TestCase
 
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $response->assertExactJson([
-            'success' => false,
-            'error' => [
+            'data' => [
                 'message' => 'The given data was invalid.',
                 'details' => [
                     'author' => [
@@ -90,8 +86,7 @@ class BestSellerControllerTest extends TestCase
 
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $response->assertExactJson([
-            'success' => false,
-            'error' => [
+            'data' => [
                 'message' => 'The given data was invalid.',
                 'details' => [
                     'isbn.0' => [
@@ -112,8 +107,7 @@ class BestSellerControllerTest extends TestCase
 
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $response->assertExactJson([
-            'success' => false,
-            'error' => [
+            'data' => [
                 'message' => 'The given data was invalid.',
                 'details' => [
                     'isbn.0' => [
@@ -137,8 +131,7 @@ class BestSellerControllerTest extends TestCase
 
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $response->assertExactJson([
-            'success' => false,
-            'error' => [
+            'data' => [
                 'message' => 'The given data was invalid.',
                 'details' => [
                     'offset' => [
@@ -159,8 +152,7 @@ class BestSellerControllerTest extends TestCase
 
         $response->assertStatus(Response::HTTP_INTERNAL_SERVER_ERROR);
         $response->assertExactJson([
-            'success' => false,
-            'error' => [
+            'data' => [
                 'message' => 'HTTP request to NYT Books API respond with error.',
                 'details' => [
                     'fault' => [

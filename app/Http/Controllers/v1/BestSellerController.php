@@ -7,21 +7,21 @@ namespace App\Http\Controllers\v1;
 use App\DTO\v1\ListDto;
 use App\Http\Requests\v1\BestSellerHistoryListRequest;
 use App\Http\Resources\v1\BestSellersHistoryResource;
-use App\Http\Responses\v1\ApiResponse;
 use App\Services\v1\BestSellerServiceInterface;
+use Illuminate\Routing\Controller;
 use Throwable;
 
-class BestSellerController extends BaseController
+class BestSellerController extends Controller
 {
     public function __construct(private readonly BestSellerServiceInterface $service) {}
 
     /**
      * @throws Throwable
      */
-    public function __invoke(BestSellerHistoryListRequest $request): ApiResponse
+    public function __invoke(BestSellerHistoryListRequest $request): BestSellersHistoryResource
     {
         $data = $this->service->listHistory(ListDto::fromRequest($request));
 
-        return new ApiResponse(BestSellersHistoryResource::make($data));
+        return BestSellersHistoryResource::make($data);
     }
 }

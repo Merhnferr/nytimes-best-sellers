@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\v1;
 
-use App\Rules\v1\ValidOffset;
+use App\Rules\ValidOffset;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BestSellerHistoryListRequest extends FormRequest

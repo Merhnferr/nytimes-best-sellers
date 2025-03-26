@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Exceptions;
 
-use App\Http\Responses\v1\ApiResponse;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
@@ -19,7 +19,7 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {});
     }
 
-    public function render($request, Throwable $e): ApiResponse
+    public function render($request, Throwable $e): JsonResponse
     {
         return match (true) {
             $e instanceof ValidationException => $this->renderValidationException($e),
@@ -29,7 +29,7 @@ class Handler extends ExceptionHandler
         };
     }
 
-    private function renderValidationException(ValidationException $exception): ApiResponse
+    private function renderValidationException(ValidationException $exception): JsonResponse
     {
         return $this->renderResponse(
             trans('messages.general.invalidDataGiven'),
@@ -38,7 +38,7 @@ class Handler extends ExceptionHandler
         );
     }
 
-    private function renderNotFoundHttpException(NotFoundHttpException $exception): ApiResponse
+    private function renderNotFoundHttpException(NotFoundHttpException $exception): JsonResponse
     {
         return $this->renderResponse(
             $exception->getMessage(),
@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
         );
     }
 
-    private function renderHttpClientException(RequestException $exception): ApiResponse
+    private function renderHttpClientException(RequestException $exception): JsonResponse
     {
         return $this->renderResponse(
             trans('messages.nytimes.apiRequestFault'),
@@ -55,7 +55,7 @@ class Handler extends ExceptionHandler
         );
     }
 
-    private function renderRegularException(Throwable $exception): ApiResponse
+    private function renderRegularException(Throwable $exception): JsonResponse
     {
         return $this->renderResponse($exception->getMessage());
     }
@@ -64,10 +64,12 @@ class Handler extends ExceptionHandler
         string $message,
         int $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR,
         mixed $details = null
-    ): ApiResponse {
-        return new ApiResponse([
-            'message' => $message,
-            'details' => $details,
-        ], false, $statusCode);
+    ): JsonResponse {
+        return new JsonResponse([
+            'data' => [
+                'message' => $message,
+                'details' => $details,
+            ],
+        ], $statusCode);
     }
 }
