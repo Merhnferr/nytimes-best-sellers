@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
             return new BooksApiConfig(
                 config('nytimes.booksApi.apiKey'),
                 config('nytimes.booksApi.baseUrl'),
+                config('nytimes.booksApi.version'),
                 config('nytimes.booksApi.endpoints'),
             );
         });

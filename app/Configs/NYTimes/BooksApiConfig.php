@@ -13,6 +13,7 @@ class BooksApiConfig
     public function __construct(
         readonly private string $apiKey,
         readonly private string $baseUrl,
+        readonly private string $version,
         readonly private array $endpoints
     ) {}
 
@@ -26,15 +27,16 @@ class BooksApiConfig
      */
     public function getFullEndpointAddress(string $endpointName): string
     {
-        $path = Arr::get($this->endpoints, $endpointName);
+        $path = Arr::get($this->endpoints, "$this->version.$endpointName");
 
         if (! $path) {
             throw new RuntimeException(trans('messages.nytimes.endpointNameNotExists'));
         }
 
         return sprintf(
-            '%s/%s',
+            '%s/%s/%s',
             $this->trimSlashes($this->baseUrl),
+            $this->version,
             $this->trimSlashes($path)
         );
     }
