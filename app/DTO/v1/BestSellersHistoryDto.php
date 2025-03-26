@@ -7,7 +7,7 @@ namespace App\DTO\v1;
 class BestSellersHistoryDto
 {
     /**
-     * @param BookDto[] $result
+     * @param  BookDto[]  $result
      */
     public function __construct(
         private readonly string $copyright,
@@ -20,7 +20,7 @@ class BestSellersHistoryDto
         return new self(
             $data['copyright'],
             $data['num_results'],
-            array_map(static fn($book) => BookDto::fromArray($book), $data['results'])
+            array_map(static fn ($book) => BookDto::fromArray($book), $data['results'])
         );
     }
 

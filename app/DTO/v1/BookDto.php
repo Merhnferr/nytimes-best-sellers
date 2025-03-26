@@ -7,9 +7,9 @@ namespace App\DTO\v1;
 class BookDto
 {
     /**
-     * @param IsbnDto[] $isbns
-     * @param RankHistoryDto[] $ranksHistory
-     * @param ReviewDto[] $reviews
+     * @param  IsbnDto[]  $isbns
+     * @param  RankHistoryDto[]  $ranksHistory
+     * @param  ReviewDto[]  $reviews
      */
     public function __construct(
         private readonly string $title,
@@ -36,9 +36,9 @@ class BookDto
             (float) $data['price'],
             $data['age_group'],
             $data['publisher'],
-            array_map(static fn($isbn) => IsbnDto::fromArray($isbn), $data['isbns']),
-            array_map(static fn($rank) => RankHistoryDto::fromArray($rank), $data['ranks_history']),
-            array_map(static fn($review) => ReviewDto::fromArray($review), $data['reviews'])
+            array_map(static fn ($isbn) => IsbnDto::fromArray($isbn), $data['isbns']),
+            array_map(static fn ($rank) => RankHistoryDto::fromArray($rank), $data['ranks_history']),
+            array_map(static fn ($review) => ReviewDto::fromArray($review), $data['reviews'])
         );
     }
 

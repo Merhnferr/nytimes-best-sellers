@@ -13,7 +13,7 @@ class ListDto
         private readonly array $isbn,
         private readonly string $title,
         private readonly int $offset,
-    ){}
+    ) {}
 
     public static function fromRequest(BestSellerHistoryListRequest $request): self
     {
@@ -29,7 +29,7 @@ class ListDto
     {
         $queryParams = array_filter(
             get_object_vars($this),
-            static fn($value) => !empty($value)
+            static fn ($value) => ! empty($value)
         );
 
         if (array_key_exists('isbn', $queryParams)) {
