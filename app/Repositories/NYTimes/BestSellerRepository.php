@@ -8,7 +8,7 @@ use App\Configs\NYTimes\BooksApiConfig;
 use Illuminate\Support\Facades\Http;
 use Throwable;
 
-class BestSellerRepository
+class BestSellerRepository implements BestSellerRepositoryInterface
 {
     public function __construct(private readonly BooksApiConfig $config) {}
 

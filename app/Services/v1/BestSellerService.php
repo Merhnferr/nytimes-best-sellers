@@ -10,7 +10,7 @@ use App\Repositories\NYTimes\BestSellerRepository;
 use Illuminate\Support\Facades\Cache;
 use Throwable;
 
-class BestSellerService
+class BestSellerService implements BestSellerServiceInterface
 {
     public function __construct(private readonly BestSellerRepository $repository) {}
 
