@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\NYTimes\Repositories;
+namespace App\Repositories\NYTimes;
 
-use App\NYTimes\Configs\BooksApiConfig;
+use App\Configs\NYTimes\BooksApiConfig;
 use Illuminate\Support\Facades\Http;
 use Throwable;
 

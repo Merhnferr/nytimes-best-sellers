@@ -6,7 +6,7 @@ namespace App\Services\v1;
 
 use App\Helpers\CacheHelper;
 use App\Helpers\FiltersHelper;
-use App\NYTimes\Repositories\BestSellerRepository;
+use App\Repositories\NYTimes\BestSellerRepository;
 use Illuminate\Support\Facades\Cache;
 use Throwable;
 

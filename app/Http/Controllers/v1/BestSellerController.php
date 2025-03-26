@@ -16,7 +16,7 @@ class BestSellerController extends BaseController
     /**
      * @throws Throwable
      */
-    public function listHistory(BestSellerHistoryListRequest $request): JsonResponse
+    public function __invoke(BestSellerHistoryListRequest $request): JsonResponse
     {
         return $this->json($this->service->listHistory($request->validated()));
     }
