@@ -1,0 +1,9 @@
+# Available filters:
+#
+# ?author=
+# ?isbn[]=&isbn[]=
+# ?title=
+# ?offset=
+
+GET {{appHost}}/api/v1/bestSellers/history
+Accept: application/json
