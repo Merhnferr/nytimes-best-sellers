@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources\v1;
 
-use App\DTO\ReviewDto;
+use App\DTO\v1\ReviewDto;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 

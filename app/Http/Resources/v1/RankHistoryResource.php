@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources\v1;
 
-use App\DTO\RankHistoryDto;
+use App\DTO\v1\RankHistoryDto;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 

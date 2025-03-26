@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\DTO;
+namespace App\DTO\v1;
 
 use App\Http\Requests\v1\BestSellerHistoryListRequest;
 

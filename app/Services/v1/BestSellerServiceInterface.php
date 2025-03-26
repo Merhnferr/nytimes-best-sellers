@@ -2,8 +2,8 @@
 
 namespace App\Services\v1;
 
-use App\DTO\BestSellersHistoryDto;
-use App\DTO\ListDto;
+use App\DTO\v1\BestSellersHistoryDto;
+use App\DTO\v1\ListDto;
 
 interface BestSellerServiceInterface
 {

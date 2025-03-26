@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\NYTimes;
+namespace App\Repositories\v1;
 
 interface BestSellerRepositoryInterface
 {

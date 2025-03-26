@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Services\v1;
 
-use App\DTO\BestSellersHistoryDto;
-use App\DTO\ListDto;
+use App\DTO\v1\BestSellersHistoryDto;
+use App\DTO\v1\ListDto;
 use App\Helpers\CacheHelper;
-use App\Repositories\NYTimes\BestSellerRepository;
+use App\Repositories\v1\BestSellerRepository;
 use Illuminate\Support\Facades\Cache;
 use Throwable;
 

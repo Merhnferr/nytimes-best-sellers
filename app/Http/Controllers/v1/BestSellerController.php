@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\v1;
 
-use App\DTO\ListDto;
+use App\DTO\v1\ListDto;
 use App\Http\Requests\v1\BestSellerHistoryListRequest;
 use App\Http\Resources\v1\BestSellersHistoryResource;
 use App\Http\Responses\v1\ApiResponse;

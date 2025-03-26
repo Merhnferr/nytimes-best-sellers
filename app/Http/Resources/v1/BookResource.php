@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources\v1;
 
-use App\DTO\BookDto;
+use App\DTO\v1\BookDto;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 

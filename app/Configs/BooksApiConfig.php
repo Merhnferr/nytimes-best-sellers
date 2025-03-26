@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Configs\NYTimes;
+namespace App\Configs;
 
 use Illuminate\Support\Arr;
 use RuntimeException;
