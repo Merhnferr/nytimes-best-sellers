@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Services\v1;
 
+use App\DTO\BestSellersHistoryDto;
+use App\DTO\ListDto;
 use App\Helpers\CacheHelper;
-use App\Helpers\FiltersHelper;
 use App\Repositories\NYTimes\BestSellerRepository;
 use Illuminate\Support\Facades\Cache;
 use Throwable;
@@ -17,25 +18,19 @@ class BestSellerService implements BestSellerServiceInterface
     /**
      * @throws Throwable
      */
-    public function listHistory(array $filters): array
+    public function listHistory(ListDto $listDto): BestSellersHistoryDto
     {
-        $filters = FiltersHelper::formatFilters($filters);
-        $cacheKey = CacheHelper::buildCacheKey($filters);
+        $queryParams = $listDto->toQueryParams();
+        $cacheKey = CacheHelper::buildCacheKey($queryParams);
 
         if (Cache::has($cacheKey)) {
-            return Cache::get($cacheKey);
+            return BestSellersHistoryDto::fromArray(Cache::get($cacheKey));
         }
 
-        $data = $this->repository->listHistory($filters);
-        $bestSellers = [
-            'bestSellers' => $data['results'] ?? [],
-            'meta' => [
-                'total' => $data['num_results'] ?? 0,
-            ],
-        ];
+        $data = $this->repository->listHistory($queryParams);
 
-        Cache::put($cacheKey, $bestSellers, config('cache.cacheTtl'));
+        Cache::put($cacheKey, $data, config('cache.cacheTtl'));
 
-        return $bestSellers;
+        return BestSellersHistoryDto::fromArray($data);
     }
 }

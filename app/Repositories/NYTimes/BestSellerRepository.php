@@ -17,18 +17,9 @@ class BestSellerRepository implements BestSellerRepositoryInterface
      */
     public function listHistory(array $filters): array
     {
-        return Http::get(
-            $this->config->getFullEndpointAddress('lists.bestSellersHistory'),
-            $this->appendApiKey($filters)
-        )->throw()
+        return Http::withQueryParameters(['api-key' => $this->config->getApiKey()])
+            ->get($this->config->getFullEndpointAddress('lists.bestSellersHistory'), $filters)
+            ->throw()
             ->json();
-    }
-
-    private function appendApiKey(array $queryParams): array
-    {
-        return [
-            ...$queryParams,
-            'api-key' => $this->config->getApiKey(),
-        ];
     }
 }
