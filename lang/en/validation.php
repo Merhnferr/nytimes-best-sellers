@@ -173,7 +173,7 @@ return [
 
     'custom' => [
         'isbn.*' => [
-            'regex' => 'ISBN must be 10 or 13 digit numeric string.',
+            'regex' => 'ISBN must be valid isbn-10 or isbn-13 string.',
         ],
     ],
 

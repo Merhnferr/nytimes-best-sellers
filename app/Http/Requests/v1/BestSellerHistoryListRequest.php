@@ -19,7 +19,7 @@ class BestSellerHistoryListRequest extends FormRequest
         return [
             'author' => ['string'],
             'isbn' => ['array'],
-            'isbn.*' => ['bail', 'distinct', 'regex:/^(?:\d{10}|\d{13})$/'],
+            'isbn.*' => ['bail', 'distinct', 'regex:/^(?:\d{9}[\dX]|\d{13})$/'],
             'title' => ['string'],
             'offset' => ['bail', 'integer', 'min:0', new ValidOffset],
         ];
