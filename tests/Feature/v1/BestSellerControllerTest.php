@@ -25,9 +25,9 @@ class BestSellerControllerTest extends TestCase
         $this->appRoute = route('best-sellers.history', absolute: false);
         $this->booksApiRouteToFake = sprintf(
             '%s%s%s*',
-            config('bookApi.baseUrl'),
-            config('bookApi.defaultVersion'),
-            config('bookApi.endpoints.v3.lists.bestSellersHistory'),
+            config('booksApi.baseUrl'),
+            config('booksApi.defaultVersion'),
+            config('booksApi.endpoints.v3.lists.bestSellersHistory'),
         );
     }
 
@@ -90,7 +90,11 @@ class BestSellerControllerTest extends TestCase
 
         $response = $this->get($this->appRoute);
 
-        $this->assertTrue(Cache::has(CacheHelper::buildCacheKey('v3', [])));
+        $this->assertTrue(
+            Cache::has(
+                CacheHelper::buildCacheKey(config('booksApi.defaultVersion'), [])
+            )
+        );
 
         $response->assertStatus(Response::HTTP_OK);
         $response->assertJsonFragment([
