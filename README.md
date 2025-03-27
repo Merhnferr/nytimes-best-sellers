@@ -60,7 +60,7 @@ must be `http-client.private.env.json`:
 
 ![http-client.private.env.json.png](documentation/images/http-env-file.png)
 
-- Set env variable `local.appHost` with the host of application on your environment.
+- In created file set client variable `local.appHost` with the host of application on your environment.
 - Open file `requests/v1/best-sellers-history.http` and select environment `local`:
 
 ![environment-selection.png](documentation/images/environment-selection.png)
@@ -69,7 +69,7 @@ must be `http-client.private.env.json`:
 
 ### CLI.
 
-Application provides a shortcuts for a built-in commands:
+Application provides a shortcuts for a useful commands:
 * `composer test` - shortcut for `php artisan test`.
 * `composer format` - shortcut for `./vendor/bin/pint` for code auto-formatting.
 * `composer analyse` - shortcut for `/vendor/bin/phpstan analyse`.
