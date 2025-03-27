@@ -39,8 +39,10 @@ class BookService implements BookServiceInterface
     /**
      * @throws RequestException
      */
-    private function sendRequest(string $endpointName, FiltersDtoInterface $filtersDto, string $version = 'v3')
+    private function sendRequest(string $endpointName, FiltersDtoInterface $filtersDto, ?string $version = null)
     {
+        $version = $version ?? (string) config('booksApi.defaultVersion');
+
         $endpointUri = $this->getEndpointUri($version, $endpointName);
 
         $queryParams = $filtersDto->toQueryParams();
