@@ -1,10 +1,10 @@
 # Lendflow Assessment: NYT Best Sellers List & Filter.
 
 ## Table of contents.
-- Requirements.
-- Installation instructions.
-- How to use application.
-- Additional information.
+- [Requirements.](#system-requirements)
+- [Installation instructions.](#installation-instructions)
+- [How to use application.](#how-to-use-application)
+- [Additional information.](#additional-information)
 
 ## System requirements.
 - PHP >=8.1
