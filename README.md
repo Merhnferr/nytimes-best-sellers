@@ -71,8 +71,8 @@ must be `http-client.private.env.json`:
 
 Application provides a shortcuts for a built-in commands:
 * `composer test` - shortcut for `php artisan test`.
-* `composer format-test` - shortcut for `./vendor/bin/pint --test` for code formatting (autocorrection is disabled).
-* `composer format` - shortcut for `./vendor/bin/pint` for code formatting (autocorrection is enabled).
+* `composer format` - shortcut for `./vendor/bin/pint` for code auto-formatting.
+* `composer analyse` - shortcut for `/vendor/bin/phpstan analyse`.
 
 # Additional information.
 

@@ -31,7 +31,7 @@ class RankHistoryDto
             $data['published_date'],
             $data['bestsellers_date'],
             $data['weeks_on_list'],
-            $data['ranks_last_week'] ?? null,
+            $data['ranks_last_week'],
             $data['asterisk'],
             $data['dagger']
         );

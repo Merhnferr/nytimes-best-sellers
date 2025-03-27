@@ -2,7 +2,7 @@
 
 return [
     'nytimes' => [
-        'endpointNameNotExists' => 'Undefined endpoint name specified. Check NYT Books API configuration.',
+        'endpointNameNotExists' => 'Attempted to request undefined Books API endpoint. Check Books API configuration.',
         'apiRequestFault' => 'HTTP request to NYT Books API respond with error.',
     ],
     'general' => [

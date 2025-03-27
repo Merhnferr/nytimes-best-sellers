@@ -41,6 +41,9 @@ class BestSellersHistoryDto
         return $this->resultsNumber;
     }
 
+    /**
+     * @return BookDto[]
+     */
     public function getResult(): array
     {
         return $this->result;

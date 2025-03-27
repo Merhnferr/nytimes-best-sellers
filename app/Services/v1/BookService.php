@@ -39,9 +39,9 @@ class BookService implements BookServiceInterface
     /**
      * @throws RequestException
      */
-    private function sendRequest(string $endpointName, FiltersDtoInterface $filtersDto, ?string $version = null)
+    private function sendRequest(string $endpointName, FiltersDtoInterface $filtersDto, ?string $version = null): array
     {
-        $version = $version ?? (string) config('booksApi.defaultVersion');
+        $version ??= config('booksApi.defaultVersion');
 
         $endpointUri = $this->getEndpointUri($version, $endpointName);
 
@@ -59,7 +59,7 @@ class BookService implements BookServiceInterface
         return $response;
     }
 
-    private function getEndpointUri(string $version, $endpointName): string
+    private function getEndpointUri(string $version, string $endpointName): string
     {
         $path = Arr::get(config('booksApi.endpoints'), "$version.$endpointName");
 
