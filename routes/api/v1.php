@@ -3,4 +3,4 @@
 use App\Http\Controllers\v1\BestSellerController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('bestSellers/history', BestSellerController::class);
+Route::get('best-sellers/history', BestSellerController::class);

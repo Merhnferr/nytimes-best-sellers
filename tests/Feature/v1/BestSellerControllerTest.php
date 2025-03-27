@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\v1;
 
+use App\Helpers\CacheHelper;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,7 +13,7 @@ use Tests\TestCase;
 
 class BestSellerControllerTest extends TestCase
 {
-    private const ROUTE = '/api/v1/bestSellers/history';
+    private const ROUTE = '/api/v1/best-sellers/history';
 
     private const URL_TO_FAKE = 'https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json*';
 
@@ -31,7 +32,7 @@ class BestSellerControllerTest extends TestCase
 
         $response = $this->get(self::ROUTE);
 
-        $this->assertTrue(Cache::has(md5(config('cache.prefix'))));
+        $this->assertTrue(Cache::has(CacheHelper::buildCacheKey('v3', [])));
 
         $response->assertStatus(200);
         $response->assertJsonFragment([

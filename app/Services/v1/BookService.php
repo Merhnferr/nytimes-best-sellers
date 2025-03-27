@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Services\v1;
 
+use App\DTO\v1\BestSellersFiltersDto;
 use App\DTO\v1\BestSellersHistoryDto;
-use App\DTO\v1\DtoInterface;
-use App\DTO\v1\ListDto;
+use App\DTO\v1\FiltersDtoInterface;
 use App\Helpers\CacheHelper;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\RequestException;
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Http;
 use RuntimeException;
 use Throwable;
 
-class BestSellerService implements BestSellerServiceInterface
+class BookService implements BookServiceInterface
 {
     private readonly PendingRequest $client;
 
@@ -29,18 +29,9 @@ class BestSellerService implements BestSellerServiceInterface
     /**
      * @throws Throwable
      */
-    public function listHistory(ListDto $listDto): BestSellersHistoryDto
+    public function listBestSellersHistory(BestSellersFiltersDto $filtersDto): BestSellersHistoryDto
     {
-        $queryParams = $listDto->toQueryParams();
-        $cacheKey = CacheHelper::buildCacheKey($queryParams);
-
-        if (Cache::has($cacheKey)) {
-            return BestSellersHistoryDto::fromArray(Cache::get($cacheKey));
-        }
-
-        $data = $this->sendRequest('lists.bestSellersHistory', $listDto);
-
-        Cache::put($cacheKey, $data, config('cache.cacheTtl'));
+        $data = $this->sendRequest('lists.bestSellersHistory', $filtersDto);
 
         return BestSellersHistoryDto::fromArray($data);
     }
@@ -48,11 +39,22 @@ class BestSellerService implements BestSellerServiceInterface
     /**
      * @throws RequestException
      */
-    private function sendRequest(string $endpointName, DtoInterface $dto, string $version = 'v3')
+    private function sendRequest(string $endpointName, FiltersDtoInterface $filtersDto, string $version = 'v3')
     {
         $endpointUri = $this->getEndpointUri($version, $endpointName);
 
-        return $this->client->get($endpointUri, $dto->toQueryParams())->throw()->json();
+        $queryParams = $filtersDto->toQueryParams();
+        $cacheKey = CacheHelper::buildCacheKey($version, $queryParams);
+
+        if (Cache::has($cacheKey)) {
+            return Cache::get($cacheKey);
+        }
+
+        $response = $this->client->get($endpointUri, $queryParams)->throw()->json();
+
+        Cache::put($cacheKey, $response, config('cache.cacheTtl'));
+
+        return $response;
     }
 
     private function getEndpointUri(string $version, $endpointName): string

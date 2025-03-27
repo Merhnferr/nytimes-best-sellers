@@ -2,7 +2,7 @@
 
 namespace App\DTO\v1;
 
-interface DtoInterface
+interface FiltersDtoInterface
 {
     public function toQueryParams(): array;
 }

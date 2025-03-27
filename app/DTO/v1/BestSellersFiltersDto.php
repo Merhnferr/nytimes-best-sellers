@@ -6,7 +6,7 @@ namespace App\DTO\v1;
 
 use App\Http\Requests\v1\BestSellerHistoryListRequest;
 
-class ListDto implements DtoInterface
+class BestSellersFiltersDto implements FiltersDtoInterface
 {
     public function __construct(
         private readonly string $author,

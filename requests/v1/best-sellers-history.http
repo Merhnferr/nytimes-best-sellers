@@ -5,5 +5,5 @@
 # ?title=
 # ?offset=
 
-GET {{appHost}}/api/v1/bestSellers/history
+GET {{appHost}}/api/v1/best-sellers/history
 Accept: application/json
